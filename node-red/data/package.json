@@ -1,0 +1,27 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "@andreashauschild/node-red-contrib-ethers-node": "~0.0.29",
+        "keccak256": "^1.0.6",
+        "node-red-contrib-ethereum": "https://github.com/timweing/node-red-contrib-ethereum",
+        "node-red-contrib-fiware_official": "https://github.com/FIWARE/node-red-contrib-FIWARE_official.git",
+        "node-red-contrib-fs": "https://github.com/zeldalegends/node-red-contrib-fs",
+        "node-red-contrib-image-tools": "~2.1.1",
+        "node-red-contrib-letsfiware-ngsi": "~0.17.0",
+        "node-red-contrib-localtunnel": "~1.0.0-2",
+        "node-red-contrib-ngrok": "~3.1.0",
+        "node-red-contrib-ngsi-ld": "~0.4.0",
+        "node-red-contrib-os": "~0.2.1",
+        "node-red-contrib-ui-led": "~0.4.11",
+        "node-red-contrib-ui-media": "~1.2.0",
+        "node-red-contrib-watchdirectory": "https://github.com/fatoldsun00/node-red-contrib-watchdirectory",
+        "node-red-dashboard": "~3.6.2",
+        "node-red-node-base64": "^0.3.0",
+        "node-red-node-smooth": "~0.1.2",
+        "node-red-node-ui-table": "~0.4.3",
+        "passport-fiware-oauth": "^0.3.0"
+    }
+}

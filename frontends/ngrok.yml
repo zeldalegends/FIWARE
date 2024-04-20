@@ -1,0 +1,16 @@
+version: 2
+api_key: 2N797rVCrHsuudyqB8udClLhylO_7Mw8xcUdpVLdiLqELZDMP
+authtoken: 2N790LnsQbKo5iF2teAKEdpJ7q0_6BEZbvZpgnEM32dnuf3sy
+tunnels:
+  inspect:
+    proto: http
+    addr: 4040
+  mongoExpress:
+    proto: http
+    addr: fe-mongo:8081
+  phpMyAdmin:
+    proto: http
+    addr: fe-mysql
+# node-red:
+#   proto: http
+#   addr: node-red:1880

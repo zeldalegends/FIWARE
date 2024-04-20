@@ -1,0 +1,47 @@
+{
+    "15d84497.52381b": {
+        "username": "alice-the-admin@test.com",
+        "password": "test",
+        "client_id": "tutorial-dckr-site-0000-xpresswebapp",
+        "client_secret": "tutorial-dckr-site-0000-clientsecret"
+    },
+    "a46f63f7bc8183e7": {
+        "privateKey": "5f00a68d77e79e051aeafd7dec7657999dce84c045a8aa9d7995137267f91e52"
+    },
+    "b4799249b6347148": {
+        "authtoken": "2eCc2WUv8ElJbzGU8WE4tM9nIbU_3i7Z564CFmajxtUrUZWod"
+    },
+    "40b1b6f19e5fe649": {},
+    "1c5e119ec6122feb": {},
+    "907c553d7533ec10": {
+        "username": "alice-the-admin@test.com",
+        "password": "test",
+        "clientid": "tutorial-dckr-site-0000-xpresswebapp",
+        "clientsecret": "tutorial-dckr-site-0000-clientsecret"
+    },
+    "608eef2b7fe25a9c": {},
+    "a085b73ca27873cb": {},
+    "4309ab3d92258a66": {},
+    "9c04efd1221c5228": {},
+    "379b8f87c7b48b05": {},
+    "ef29d54a03a9b576": {},
+    "583e944f9561284c": {},
+    "6cf4ec1defe5e72f": {
+        "authtoken": "2e3OcV139oYcSUIwi0bCL4NLexU_554rNagEXCygsfFeNm7aA"
+    },
+    "4b950a1a911e95a6": {},
+    "066ecaa01951305b": {},
+    "63ac671491a13a4b": {
+        "privatekey": "0xdbbf87459bea5ca7309d9eb990f05922ab8579f4ad42364ffc229000db2ed818"
+    },
+    "80433672957732d2": {},
+    "fca10557a6a499d1": {},
+    "e409f3cc90a4caf9": {},
+    "48b491d3a6eaaadf": {},
+    "d50d164548a65454": {},
+    "c8f051effd2e3560": {},
+    "432586859e633808": {},
+    "aef16637363ad33c": {},
+    "e4a86899f2a0deab": {},
+    "1ec5d01f0c696c5d": {}
+}
