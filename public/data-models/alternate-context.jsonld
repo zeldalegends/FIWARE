@@ -14,12 +14,12 @@
         "Gerät": "fiware:Device",
         "Füllstandssensor": "tutorial:FillingLevelSensor",
         "Herbicide": "tutorial:Herbicide",
-        "HVAC": "https://w3id.org/saref#HVAC",
+        "HVAC": "https://w3id.org/saref#hvac",
         "Männlich": "schema:Male",
         "PartField": "tutorial:PartField",
         "Person": "fiware:Person",
         "SoilSensor": "tutorial:SoilSensor",
-        "TemperatureSensor": "https://w3id.org/saref#TemperatureSensor",
+        "TemperatureSensor": "https://w3id.org/saref#temperatureSensor",
         "Activität": "fiware:Activity",
         "Traktor": "tutorial:Tractor",
         "Wasser": "tutorial:Water",
@@ -158,7 +158,7 @@
             }
         },
         {
-            "@id": "fiware:TemperatureSensor",
+            "@id": "https://w3id.org/saref#temperatureSensor",
             "@type": "rdfs:Class",
             "rdfs:comment": [
                 {
@@ -173,7 +173,7 @@
                 }
             ],
             "rdfs:subClassOf": {
-                "@id": "schema:Thing"
+                "@id": "https://w3id.org/saref#sensor"
             }
         },
         {
@@ -215,39 +215,7 @@
             }
         },
         {
-            "@id": "fiware:temperature",
-            "@type": "ngsi-ld:Property",
-            "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Property related to some measurements that are characterized by a certain value that is measured in a temperature unit (degree_Celsius, degree_Fahrenheit, or degree_kelvin)"
-                }
-            ],
-            "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "temperature"
-                }
-            ]
-        },
-        {
-            "@id": "fiware:fillingLevel",
-            "@type": "ngsi-ld:Property",
-            "rdfs:comment": [
-                {
-                    "@language": "en",
-                    "@value": "Property related to some measurements that are characterized by a certain value that is a filling level."
-                }
-            ],
-            "rdfs:label": [
-                {
-                    "@language": "en",
-                    "@value": "fillingLevel"
-                }
-            ]
-        },
-        {
-            "@id": "fiware:temperature",
+            "@id": "https://w3id.org/saref#temperature",
             "@type": "ngsi-ld:Property",
             "rdfs:comment": [
                 {

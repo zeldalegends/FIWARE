@@ -14,12 +14,12 @@
         "Female": "schema:Female",
         "FillingLevelSensor": "tutorial:FillingLevelSensor",
         "Herbicide": "tutorial:Product",
-        "HVAC": "https://w3id.org/saref#HVAC",
+        "HVAC": "https://w3id.org/saref#hvac",
         "Male": "schema:Male",
         "PartField": "tutorial:PartField",
         "Person": "fiware:Person",
         "SoilSensor": "tutorial:SoilSensor",
-        "TemperatureSensor": "https://w3id.org/saref#TemperatureSensor",
+        "TemperatureSensor": "https://w3id.org/saref#temperatureSensor",
         "Task": "fiware:Activity",
         "Tractor": "tutorial:Tractor",
         "Water": "tutorial:Water",
@@ -151,7 +151,7 @@
             "@id": "schema:honorificSuffix",
             "@type": "xsd:string"
         },
-        "humidity": "https://w3id.org/saref#Humidity",
+        "humidity": "https://w3id.org/saref#humidity",
         "hut": "https://wiki.openstreetmap.org/wiki/Tag:building%3Dhut",
         "implement": "https://w3id.org/saref#implement",
         "ipAddress": {
@@ -187,7 +187,8 @@
         "movementActivity": "https://w3id.org/saref#movementActivity",
         "multimedia": "https://w3id.org/saref#multimedia",
         "name": {
-            "@id": "schema:name",            "@type": "xsd:string"
+            "@id": "schema:name",
+            "@type": "xsd:string"
         },
         "network": "https://w3id.org/saref#network",
         "occupancy": "https://w3id.org/saref#occupancy",
@@ -225,7 +226,7 @@
             "@id": "fiware:rssi",
             "@type": "xsd:string"
         },
-        "sensor": "https://w3id.org/saref#Sensor",
+        "sensor": "https://w3id.org/saref#sensor",
         "serialNumber": {
             "@id": "fiware:serialNumber",
             "@type": "xsd:string"
@@ -256,7 +257,7 @@
             "@id": "schema:telephone",
             "@type": "xsd:string"
         },
-        "temperature": "https://w3id.org/saref#Temperature",
+        "temperature": "https://w3id.org/saref#temperature",
         "transformer_tower": "https://wiki.openstreetmap.org/wiki/Tag:building%3Dtransformer_tower",
         "value": {
             "@id": "fiware:value",
@@ -316,7 +317,7 @@
             }
         },
         {
-            "@id": "https://w3id.org/saref#TemperatureSensor",
+            "@id": "https://w3id.org/saref#temperatureSensor",
             "@type": "rdfs:Class",
             "rdfs:comment": [
                 {
@@ -331,7 +332,7 @@
                 }
             ],
             "rdfs:subClassOf": {
-                "@id": "schema:Thing"
+                "@id": "https://w3id.org/saref#sensor"
             }
         },
         {
@@ -373,7 +374,7 @@
             }
         },
         {
-            "@id": "https://w3id.org/saref#Temperature",
+            "@id": "https://w3id.org/saref#temperature",
             "@type": "ngsi-ld:Property",
             "rdfs:comment": [
                 {
