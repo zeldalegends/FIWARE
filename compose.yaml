@@ -253,17 +253,17 @@ services:
       - "80:80"   # http://localhost
       - "443:443" # https://localhost
     volumes:
+      - ./nginx/conf:/etc/nginx/conf.d:ro
       - ./certbot/conf:/etc/letsencrypt:ro # Let's Encrypt (Certbot)
-    # - ./certbot/www:/var/www/certbot:ro  # Let's Encrypt (Certbot)
+      - ./certbot/www:/var/www/certbot:ro  # Let's Encrypt (Certbot)
     # - ./certbot/dhparam:/etc/ssl/certs   # Let's Encrypt (Certbot)
-      - ./nginx/conf:/etc/nginx/conf.d
       - ./public:/home/www/public_html/localhost/public
-  # command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-  # command: "/bin/sh -c 'trap exit TERM; while :; do nginx -s reload; sleep 6h & wait $${!}; done & nginx -g \"daemon off;\"'"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    # command: "/bin/sh -c 'trap exit TERM; while :; do nginx -s reload; sleep 6h & wait $${!}; done & nginx -g \"daemon off;\"'"
     healthcheck:
     # test: curl -k https://localhost/data-models/ngsi-context.jsonld 2>&1 | awk 'NR==1{print $$2}' | grep -q -e '200')
     # test: curl -k -sf https://localhost/public/data-models/ngsi-context.jsonld || exit 1
-      test: curl -k -sf http://localhost || exit 1
+      test: curl -sf http://localhost || exit 1
 
   # Let's Encrypt with Certbot
   certbot:
@@ -272,22 +272,20 @@ services:
     container_name: certbot
     volumes:
       - ./certbot/conf:/etc/letsencrypt:rw
-    # - ./certbot/www:/var/www/certbot:rw
-    # - ./certbot/var:/var/lib/letsencrypt
+      - ./certbot/www:/var/www/certbot:rw
+      - ./certbot/var:/var/lib/letsencrypt
     depends_on:
       - nginx
   # Run with staging (testing)
-  # command: certonly --webroot -w /var/www/certbot -d my.domain.org -m my@email.com --no-eff-email --agree-tos --rsa-key-size 4096 --staging -v -n
+  # command: certonly --webroot -w /var/www/certbot -d <domain> -m <email> --no-eff-email --agree-tos --rsa-key-size 4096 --staging -n -v
   # Run forcing renewal (init)
-  # command: certonly --webroot -w /var/www/certbot -d my.domain.org -m my@email.com --no-eff-email --agree-tos --rsa-key-size 4096 --keep --force-renewal -v -n
+  # command: certonly --webroot -w /var/www/certbot -d <domain> -m <email> --no-eff-email --agree-tos --rsa-key-size 4096 --keep --force-renewal -n -v
   # Run normally (operational)
-  # command: certonly --webroot -w /var/www/certbot -d my.domain.org -m my@email.com --no-eff-email --agree-tos --rsa-key-size 4096 --keep -v -n
-  # 
-  # entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-                                                                                                            ###############    ##############
-  # entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot certonly --webroot -w /var/www/certbot/ -d <my.domain.org> -m <my@email.com> --no-eff-email --agree-tos --keep -n -v --rsa-key-size 4096; sleep 12h & wait $${!}; done;'"
-                                                                                                            ###############    ##############
-    entrypoint: /bin/sh -c 'trap exit TERM; while :; do certbot certonly --webroot -w /var/www/certbot/ -d enershare.zapto.org -m a@b.com --no-eff-email --agree-tos --rsa-key-size 4096 --keep -n -v; sleep 12h & wait $${!}; done;'
+  # command: certonly --webroot -w /var/www/certbot -d <domain> -m <email> --no-eff-email --agree-tos --rsa-key-size 4096 --keep -n -v 
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+                                                                                                            ###################    ##############
+  # entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot certonly --webroot -w /var/www/certbot/ -d enershare.zapto.org -m test@email.com --no-eff-email --agree-tos --rsa-key-size 4096 --keep -n -vvv; sleep 12h & wait $${!}; done;'"
+                                                                                                            ###################    ##############
     healthcheck:
       test: test -n '$$(ls -A /etc/letsencrypt/live/)' || test '$$DRY_RUN' == 'true'
 

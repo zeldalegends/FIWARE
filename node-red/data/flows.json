@@ -2996,7 +2996,7 @@
         "name": "node-red:1880",
         "input_type": "input",
         "port": "1880",
-        "subdomain": "my-hyperride",
+        "subdomain": "fiware-node-red",
         "reject_other_subdomain": false,
         "local_https": false,
         "allow_invalid_cert": true,
