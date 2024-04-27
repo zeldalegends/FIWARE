@@ -454,17 +454,18 @@
             "40b2f13307ca515e",
             "5b6f4464fcce3868",
             "fb492fbc7f0e1709",
-            "7ad91dacce9f89ba",
             "9ebc7614f8ae0530",
             "355e79edc51b326c",
-            "d4a6f58dcade2406",
             "566325ccdbdada90",
+            "ed976cdff0731072",
+            "7aa9788f0361eb1f",
+            "d4a6f58dcade2406",
             "1a03d03fe0320ad6"
         ],
         "x": 14,
         "y": 19,
         "w": 932,
-        "h": 442
+        "h": 382
     },
     {
         "id": "644561f951ea370c",
@@ -484,7 +485,7 @@
             "4f23fc3d8b1d0308"
         ],
         "x": 1034,
-        "y": 339,
+        "y": 319,
         "w": 972,
         "h": 82
     },
@@ -570,7 +571,7 @@
         "endpoint": "http://host.docker.internal:1027",
         "service": "",
         "servicepath": "",
-        "idmEndpoint": "http://host.docker.internal:3005"
+        "idmEndpoint": "https://enershare.zapto.org:3443"
     },
     {
         "id": "95f6c009.fa934",
@@ -1167,7 +1168,7 @@
         "mintaka": "",
         "atContext": "http://node-red:1880/data-models/ngsi-context.jsonld",
         "tenant": "",
-        "idmEndpoint": "http://host.docker.internal:3005",
+        "idmEndpoint": "https://enershare.zapto.org:3443",
         "idmType": "keyrock"
     },
     {
@@ -22874,7 +22875,7 @@
         "mimeType": "application/json",
         "attrs": "",
         "x": 370,
-        "y": 360,
+        "y": 260,
         "wires": [
             [
                 "275257c5a76e1748"
@@ -22890,7 +22891,7 @@
         "action": "",
         "pretty": false,
         "x": 510,
-        "y": 360,
+        "y": 260,
         "wires": [
             [
                 "3162d39e1bc769d8"
@@ -22915,7 +22916,7 @@
         "payload": "urn:ngsi-ld:TemperatureSensor:001",
         "payloadType": "str",
         "x": 130,
-        "y": 360,
+        "y": 260,
         "wires": [
             [
                 "5276a3a0580731f6"
@@ -22962,55 +22963,6 @@
         "wires": []
     },
     {
-        "id": "903baa35f939a994",
-        "type": "NGSI-LD Entity",
-        "z": "f04368e2cacc78ba",
-        "name": "",
-        "broker": "066ecaa01951305b",
-        "atContext": "",
-        "actionType": "read",
-        "entityId": "",
-        "attrs": "",
-        "sysAttrs": "false",
-        "representation": "concise",
-        "geometryProperty": "",
-        "lang": "",
-        "accept": "application/json",
-        "forbidden": "false",
-        "x": 480,
-        "y": 260,
-        "wires": [
-            [
-                "3162d39e1bc769d8"
-            ]
-        ]
-    },
-    {
-        "id": "eb615e1642801cbb",
-        "type": "inject",
-        "z": "f04368e2cacc78ba",
-        "name": "Read entity",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "urn:ngsi-ld:TemperatureSensor:001",
-        "payloadType": "str",
-        "x": 130,
-        "y": 260,
-        "wires": [
-            [
-                "903baa35f939a994"
-            ]
-        ]
-    },
-    {
         "id": "379b8f87c7b48b05",
         "type": "http request",
         "z": "df0435d82c4bf5f6",
@@ -23035,7 +22987,7 @@
             }
         ],
         "x": 570,
-        "y": 360,
+        "y": 300,
         "wires": [
             [
                 "4d2b122668704621"
@@ -23057,7 +23009,7 @@
         "statusVal": "payload.orion.version",
         "statusType": "msg",
         "x": 820,
-        "y": 420,
+        "y": 300,
         "wires": []
     },
     {
@@ -26605,7 +26557,7 @@
         "statusVal": "headers[\"x-subject-token\"]",
         "statusType": "msg",
         "x": 1520,
-        "y": 380,
+        "y": 360,
         "wires": []
     },
     {
@@ -26642,7 +26594,7 @@
         "payload": "{ \"name\": username, \"password\": password }",
         "payloadType": "jsonata",
         "x": 1140,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "4f23fc3d8b1d0308"
@@ -26686,7 +26638,7 @@
             }
         ],
         "x": 1740,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "209b6241e6a466d8"
@@ -26714,7 +26666,7 @@
         "to": "",
         "reg": false,
         "x": 1520,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "3c7ce65a8a8afb94"
@@ -26736,7 +26688,7 @@
         "statusVal": "payload.User.id",
         "statusType": "msg",
         "x": 1910,
-        "y": 380,
+        "y": 360,
         "wires": []
     },
     {
@@ -26980,7 +26932,7 @@
             }
         ],
         "x": 1320,
-        "y": 380,
+        "y": 360,
         "wires": [
             [
                 "093de2403915081d",
@@ -27013,7 +26965,7 @@
             }
         ],
         "x": 570,
-        "y": 300,
+        "y": 360,
         "wires": [
             [
                 "f3836386f6b7084d",
@@ -27036,7 +26988,7 @@
         "statusVal": "payload[\"orionld version\"]",
         "statusType": "msg",
         "x": 820,
-        "y": 300,
+        "y": 360,
         "wires": []
     },
     {
@@ -28113,7 +28065,7 @@
         "g": "fee944a6bdaf5f10",
         "name": "Smart Data Models",
         "info": "https://smartdatamodels.org/index.php/orion-ld-broker-with-examples-of-some-smart-data-models/",
-        "x": 430,
+        "x": 190,
         "y": 60,
         "wires": []
     },
@@ -29188,7 +29140,6 @@
         "id": "7ad91dacce9f89ba",
         "type": "debug",
         "z": "df0435d82c4bf5f6",
-        "g": "fee944a6bdaf5f10",
         "name": "orion version",
         "active": true,
         "tosidebar": true,
@@ -29199,7 +29150,7 @@
         "statusVal": "payload[\"orion version\"]",
         "statusType": "msg",
         "x": 810,
-        "y": 360,
+        "y": 440,
         "wires": []
     },
     {
@@ -29265,7 +29216,7 @@
         "to": "",
         "reg": false,
         "x": 200,
-        "y": 60,
+        "y": 100,
         "wires": [
             [
                 "566325ccdbdada90"
@@ -29285,7 +29236,7 @@
         "onceDelay": 0.1,
         "topic": "",
         "x": 75,
-        "y": 60,
+        "y": 100,
         "wires": [
             [
                 "9ebc7614f8ae0530"
@@ -29515,27 +29466,6 @@
                 "c15fd7e5d687bc9a"
             ]
         ]
-    },
-    {
-        "id": "d4a6f58dcade2406",
-        "type": "inject",
-        "z": "df0435d82c4bf5f6",
-        "g": "fee944a6bdaf5f10",
-        "name": " ",
-        "props": [],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "x": 75,
-        "y": 120,
-        "wires": [
-            [
-                "1a03d03fe0320ad6"
-            ]
-        ],
-        "l": false
     },
     {
         "id": "566325ccdbdada90",
@@ -29927,76 +29857,6 @@
         "wires": []
     },
     {
-        "id": "1a03d03fe0320ad6",
-        "type": "change",
-        "z": "df0435d82c4bf5f6",
-        "g": "fee944a6bdaf5f10",
-        "name": "host.docker.internal ¹",
-        "rules": [
-            {
-                "t": "set",
-                "p": "orion",
-                "pt": "msg",
-                "to": "http://host.docker.internal:1026",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "orion-ld",
-                "pt": "msg",
-                "to": "http://host.docker.internal:1027",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "keyrock",
-                "pt": "msg",
-                "to": "http://host.docker.internal:3005",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "clientId",
-                "pt": "msg",
-                "to": "tutorial-dckr-site-0000-xpresswebapp",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "clientSecret",
-                "pt": "msg",
-                "to": "tutorial-dckr-site-0000-clientsecret",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "username",
-                "pt": "msg",
-                "to": "alice-the-admin@test.com",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "password",
-                "pt": "msg",
-                "to": "test",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 200,
-        "y": 120,
-        "wires": [
-            [
-                "566325ccdbdada90"
-            ]
-        ]
-    },
-    {
         "id": "192af80d18bec436",
         "type": "change",
         "z": "df0435d82c4bf5f6",
@@ -30323,6 +30183,190 @@
         "wires": [
             [
                 "7a0d18bd3b339d0d"
+            ]
+        ]
+    },
+    {
+        "id": "ed976cdff0731072",
+        "type": "change",
+        "z": "df0435d82c4bf5f6",
+        "d": true,
+        "g": "fee944a6bdaf5f10",
+        "name": "enershare.zapto.org",
+        "rules": [
+            {
+                "t": "set",
+                "p": "orion",
+                "pt": "msg",
+                "to": "https://enershare.zapto.org",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "orion-ld",
+                "pt": "msg",
+                "to": "https://enershare.zapto.org",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "keyrock",
+                "pt": "msg",
+                "to": "https://enershare.zapto.org:3443",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "clientId",
+                "pt": "msg",
+                "to": "tutorial-dckr-site-0000-xpresswebapp",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "clientSecret",
+                "pt": "msg",
+                "to": "tutorial-dckr-site-0000-clientsecret",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "msg",
+                "to": "alice-the-admin@test.com",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "msg",
+                "to": "test",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 120,
+        "wires": [
+            [
+                "566325ccdbdada90"
+            ]
+        ]
+    },
+    {
+        "id": "7aa9788f0361eb1f",
+        "type": "inject",
+        "z": "df0435d82c4bf5f6",
+        "d": true,
+        "g": "fee944a6bdaf5f10",
+        "name": " ",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 75,
+        "y": 120,
+        "wires": [
+            [
+                "ed976cdff0731072"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "d4a6f58dcade2406",
+        "type": "inject",
+        "z": "df0435d82c4bf5f6",
+        "g": "fee944a6bdaf5f10",
+        "name": " ",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 75,
+        "y": 140,
+        "wires": [
+            [
+                "1a03d03fe0320ad6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "1a03d03fe0320ad6",
+        "type": "change",
+        "z": "df0435d82c4bf5f6",
+        "g": "fee944a6bdaf5f10",
+        "name": "host.docker.internal ¹",
+        "rules": [
+            {
+                "t": "set",
+                "p": "orion",
+                "pt": "msg",
+                "to": "http://host.docker.internal:1026",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "orion-ld",
+                "pt": "msg",
+                "to": "http://host.docker.internal:1027",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "keyrock",
+                "pt": "msg",
+                "to": "https://enershare.zapto.org:3443",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "clientId",
+                "pt": "msg",
+                "to": "tutorial-dckr-site-0000-xpresswebapp",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "clientSecret",
+                "pt": "msg",
+                "to": "tutorial-dckr-site-0000-clientsecret",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "username",
+                "pt": "msg",
+                "to": "alice-the-admin@test.com",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "password",
+                "pt": "msg",
+                "to": "test",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "566325ccdbdada90"
             ]
         ]
     }
