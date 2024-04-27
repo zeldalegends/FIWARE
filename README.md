@@ -16,7 +16,3 @@ Run containers with:
 
 Stop containers with:
 - `$ docker compose down` (or `$ ./stop.sh`)
-
-### Note
-For a security issue on Web3 libraries, the blockchain container is empty.
-Please import the smart contract manually.

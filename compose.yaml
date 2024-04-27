@@ -3,8 +3,8 @@ services:
   # Orion Context Broker v2 (legacy)
   orion-v2:
     image: fiware/orion #:3.11.0
-    hostname: context-broker
-    container_name: fiware-orion-v2
+  # hostname: orion
+    container_name: orion-v2
     depends_on:
       - mongo-db
     restart: always
@@ -18,7 +18,7 @@ services:
   orion-ld:
     image: fiware/orion-ld:1.5.1
     hostname: orion
-    container_name: fiware-orion-ld
+    container_name: orion-ld
   # depends_on:
   #   mongo-db:
   #     condition: service_healthy
@@ -68,11 +68,11 @@ services:
     expose:
       - "8081"
     environment:
-      - ME_CONFIG_BASICAUTH_USERNAME=
-      - ME_CONFIG_BASICAUTH_PASSWORD=
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=password
       - ME_CONFIG_MONGODB_SERVER=mongo-db
     healthcheck:
-      test: wget --quiet --spider http://admin:pass@localhost:8081
+      test: wget --quiet --spider http://admin:password@localhost:8081
 
   # ===============
   # FIWARE Security
@@ -82,7 +82,7 @@ services:
   keyrock:
     image: fiware/idm #:8.4.0
     hostname: idm
-    container_name: fiware-keyrock
+    container_name: keyrock
     depends_on:
       - mysql-db
     restart: always
@@ -90,7 +90,7 @@ services:
       - "3005"
     ports:
       - "3005:3005" # http://localhost:3005
-    # - "3443:3443" # https://localhost:3443
+      - "3443:3443" # https://localhost:3443
     environment:
       - DEBUG=idm:*
       - IDM_DB_HOST=mysql-db
@@ -98,12 +98,18 @@ services:
       - IDM_DB_USER=root
       - IDM_HOST=http://localhost:3005
       - IDM_PORT=3005
-      - IDM_HTTPS_ENABLED=false
+      # - IDM_HTTPS_ENABLED=false
+      - IDM_HTTPS_ENABLED=true
       - IDM_HTTPS_PORT=3443
       - IDM_ADMIN_USER=alice
       - IDM_ADMIN_EMAIL=alice-the-admin@test.com
       - IDM_ADMIN_PASS=test
       - IDM_CSP_FORM_ACTION=*
+    # remove volumes if HTTPS disabled
+    volumes:                ###################
+      - ./certbot/conf/live/enershare.zapto.org/fullchain.pem:/opt/fiware-idm/certs/idm-2018-cert.pem:ro
+      - ./certbot/conf/live/enershare.zapto.org/privkey.pem:/opt/fiware-idm/certs/idm-2018-key.pem:ro
+                           ###################
 
   # MySQL DB for Keyrock
   mysql-db:
@@ -146,7 +152,7 @@ services:
   orion-v2-proxy:
     image: fiware/pep-proxy #:8.4.0
     hostname: pep-proxy
-    container_name: fiware-orion-v2-proxy
+    container_name: orion-v2-proxy
     depends_on:
      - keyrock
      - orion-v2
@@ -164,8 +170,10 @@ services:
       - PEP_PROXY_IDM_HOST=keyrock
       - PEP_PROXY_HTTPS_ENABLED=false
       - PEP_PROXY_AUTH_ENABLED=false
-      - PEP_PROXY_IDM_SSL_ENABLED=false
-      - PEP_PROXY_IDM_PORT=3005
+      # - PEP_PROXY_IDM_SSL_ENABLED=false
+      - PEP_PROXY_IDM_SSL_ENABLED=true
+      # - PEP_PROXY_IDM_PORT=3005
+      - PEP_PROXY_IDM_PORT=3443
       - PEP_PROXY_APP_ID=tutorial-dckr-site-0000-xpresswebapp
       - PEP_PROXY_USERNAME=pep_proxy_00000000-0000-0000-0000-000000000000
       - PEP_PASSWORD=test
@@ -177,7 +185,7 @@ services:
   orion-ld-proxy:
     image: fiware/pep-proxy #:8.4.0
     hostname: wilma
-    container_name: fiware-orion-ld-proxy
+    container_name: orion-ld-proxy
     depends_on:
      - keyrock
      - orion-ld
@@ -195,8 +203,10 @@ services:
       - PEP_PROXY_IDM_HOST=keyrock
       - PEP_PROXY_HTTPS_ENABLED=false
       - PEP_PROXY_AUTH_ENABLED=false
-      - PEP_PROXY_IDM_SSL_ENABLED=false
-      - PEP_PROXY_IDM_PORT=3005
+      # - PEP_PROXY_IDM_SSL_ENABLED=false
+      - PEP_PROXY_IDM_SSL_ENABLED=true
+      # - PEP_PROXY_IDM_PORT=3005
+      - PEP_PROXY_IDM_PORT=3443
       - PEP_PROXY_APP_ID=tutorial-dckr-site-0000-xpresswebapp
       - PEP_PROXY_USERNAME=pep_proxy_00000000-0000-0000-0000-000000000000
       - PEP_PASSWORD=test
@@ -293,7 +303,7 @@ services:
   ganache:
   # image: trufflesuite/ganache
     image: hybuild/ganache
-    hostname: ganache
+    hostname: ethereum
     container_name: ganache
     restart: always
     expose:
