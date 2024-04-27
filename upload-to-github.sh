@@ -15,8 +15,8 @@
 git config user.email gamesup@libero.it
 git config user.name zeldalegends
 
-# git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
-# git status
+git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
+git status
 git add .
 echo -e "\033[0;36mPress Enter to set commit title (CTRL+S+X to terminate)...\033[0m" && read key
 git commit # -m "Initial commit"
