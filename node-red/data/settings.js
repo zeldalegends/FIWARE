@@ -177,7 +177,7 @@ module.exports = {
     //httpAdminRoot: '/admin',
     httpAdminRoot: '/editor',                                                
                                   
-    //httpAdminRoot: '/v3/editor',
+    //httpAdminRoot: '/nr/editor',
                                   
 
     /** The following property can be used to add a custom middleware function
@@ -199,7 +199,7 @@ module.exports = {
      */
     //httpNodeRoot: '/red-nodes',
                            
-    //httpNodeRoot: '/v3/',
+    //httpNodeRoot: '/nr/',
                            
 
     /** The following property can be used to configure cross-origin resource sharing
@@ -207,10 +207,10 @@ module.exports = {
      * See https://github.com/troygoode/node-cors#configuration-options for
      * details on its contents. The following is a basic permissive set of options:
      */
-    httpNodeCors: {
-        origin: "*",
-        methods: "GET,PUT,POST,DELETE"
-    },
+    httpNodeCors: {                                                          
+        origin: "*",                                                         
+        methods: "GET,PUT,POST,DELETE"                                       
+    },                                                                       
 
     /** If you need to set an http proxy please set an environment variable
      * called http_proxy (or HTTP_PROXY) outside of Node-RED in the operating system.
