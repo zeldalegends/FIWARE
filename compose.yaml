@@ -31,6 +31,17 @@ services:
       - "1026"
   # ports:
   #   - "1027:1026" # http://localhost:1027
+  # environment:
+  #   - ORIONLD_HTTPS=true
+  #   - ORIONLD_HTTPS_KEYFILE=/ssl/privkey.pem
+  #   - ORIONLD_HTTPS_CERTFILE=/ssl/fullchain.pem
+  #   - ORIONLD_CORS_ALLOWED_ORIGIN=__ALL
+  #   - ORIONLD_INSECURE_NOTIF=true
+  # # remove volumes if HTTPS disabled
+  # volumes:                ###################
+  #   - ./certbot/conf/live/enershare.zapto.org/fullchain.pem:/ssl/fullchain.pem:ro
+  #   - ./certbot/conf/live/enershare.zapto.org/privkey.pem:/ssl/privkey.pem:ro
+  #                         ###################
     command: -dbhost mongo-db -db orionld -logLevel DEBUG -forwarding # -experimental
     healthcheck:
       test: curl --fail --silent http://localhost:1026/ngsi-ld/ex/v1/version
@@ -98,7 +109,7 @@ services:
       - IDM_DB_USER=root
       - IDM_HOST=http://localhost:3005
       - IDM_PORT=3005
-      # - IDM_HTTPS_ENABLED=false
+    # - IDM_HTTPS_ENABLED=false
       - IDM_HTTPS_ENABLED=true
       - IDM_HTTPS_PORT=3443
       - IDM_ADMIN_USER=alice
@@ -109,7 +120,7 @@ services:
     volumes:                ###################
       - ./certbot/conf/live/enershare.zapto.org/fullchain.pem:/opt/fiware-idm/certs/idm-2018-cert.pem:ro
       - ./certbot/conf/live/enershare.zapto.org/privkey.pem:/opt/fiware-idm/certs/idm-2018-key.pem:ro
-                           ###################
+                            ###################
 
   # MySQL DB for Keyrock
   mysql-db:
@@ -170,9 +181,9 @@ services:
       - PEP_PROXY_IDM_HOST=keyrock
       - PEP_PROXY_HTTPS_ENABLED=false
       - PEP_PROXY_AUTH_ENABLED=false
-      # - PEP_PROXY_IDM_SSL_ENABLED=false
+    # - PEP_PROXY_IDM_SSL_ENABLED=false
       - PEP_PROXY_IDM_SSL_ENABLED=true
-      # - PEP_PROXY_IDM_PORT=3005
+    # - PEP_PROXY_IDM_PORT=3005
       - PEP_PROXY_IDM_PORT=3443
       - PEP_PROXY_APP_ID=tutorial-dckr-site-0000-xpresswebapp
       - PEP_PROXY_USERNAME=pep_proxy_00000000-0000-0000-0000-000000000000
@@ -203,9 +214,9 @@ services:
       - PEP_PROXY_IDM_HOST=keyrock
       - PEP_PROXY_HTTPS_ENABLED=false
       - PEP_PROXY_AUTH_ENABLED=false
-      # - PEP_PROXY_IDM_SSL_ENABLED=false
+    # - PEP_PROXY_IDM_SSL_ENABLED=false
       - PEP_PROXY_IDM_SSL_ENABLED=true
-      # - PEP_PROXY_IDM_PORT=3005
+    # - PEP_PROXY_IDM_PORT=3005
       - PEP_PROXY_IDM_PORT=3443
       - PEP_PROXY_APP_ID=tutorial-dckr-site-0000-xpresswebapp
       - PEP_PROXY_USERNAME=pep_proxy_00000000-0000-0000-0000-000000000000
@@ -280,12 +291,12 @@ services:
     image: certbot/certbot #:v2.10.0
     hostname: letsencrypt
     container_name: certbot
+    depends_on:
+      - nginx
     volumes:
       - ./certbot/conf:/etc/letsencrypt:rw
       - ./certbot/www:/var/www/certbot:rw
       - ./certbot/var:/var/lib/letsencrypt
-    depends_on:
-      - nginx
   # Run with staging (testing)
   # command: certonly --webroot -w /var/www/certbot -d <domain> -m <email> --no-eff-email --agree-tos --rsa-key-size 4096 --staging -n -v
   # Run forcing renewal (init)
