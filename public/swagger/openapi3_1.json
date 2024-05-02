@@ -14,10 +14,10 @@
   },
   "servers": [
     {
-      "url": "https://smartdatamodels.org:1026/ngsi-ld/v1/"
+      "url": "/orion/ngsi-ld/v1/"
     },
     {
-      "url": "/ngsi-ld/v1/"
+      "url": "/smartdatamodels/ngsi-ld/v1/"
     }
   ],
   "tags": [

@@ -8,16 +8,25 @@ Set your domain and email in the following files:
 - **run.sh**
 
 ## Usage
-Initialize containers with:
+Initialize containers with this command:
 - `$ ./run.sh` (first time)
 
-Run containers with:
-- `$ docker compose up -d` (or `$ ./run.sh`)
+Run containers with one of these commands:
+- `$ docker compose up -d`
+- `$ ./run.sh`
 
-Stop containers with:
-- `$ docker compose down` (or `$ ./stop.sh`)
+Stop containers with one of these commands:
+- `$ docker compose down`
+- `$ ./stop.sh`
+- `$ docker rm -f $(docker ps -aq)` (remove ALL containers)
 
-## MVP
+### FIWARE MVP Stack
+The minimal configuration consists of:
+- Orion-LD, with v2 support and health check
+- Mongo DB, with volumes (to allow permanent subscriptions and enetity persistence)
+
+No optimization, security, web server and other services included.
+
 **docker-compose.yml**
 ```
 services:
@@ -27,18 +36,15 @@ services:
     image: fiware/orion-ld:1.5.1
     depends_on:
       - mongo-db
-    restart: always
     ports:
-      - "1026:1026" # http://localhost:1026
-    command: -dbhost mongo-db -logLevel DEBUG -forwarding # -db orion -experimental
+      - "1026:1026"
+    command: -dbhost mongo-db -logLevel DEBUG -forwarding # -experimental
     healthcheck:
-      test: curl --fail -s http://orion:1026/version || exit 1
+      test: curl -sf http://orion:1026/version || exit 1
 
   # Mongo DB for Orion
   mongo-db:
     image: mongo:4.4
-    container_name: db-mongo
-    restart: always
     command: --nojournal
     volumes:
       - mongo-db:/data/db

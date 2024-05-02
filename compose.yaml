@@ -99,8 +99,9 @@ services:
     restart: always
     expose:
       - "3005"
+      - "3443"
     ports:
-      - "3005:3005" # http://localhost:3005
+    # - "3005:3005" # http://localhost:3005
       - "3443:3443" # https://localhost:3443
     environment:
       - DEBUG=idm:*
@@ -135,7 +136,7 @@ services:
       - MYSQL_ROOT_HOST=%
     volumes:
       - mysql-db:/var/lib/mysql
-      - ./mysql:/docker-entrypoint-initdb.d/:ro
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: mysqladmin ping -h localhost -uroot -psecret
 
@@ -162,7 +163,7 @@ services:
   # Wilma PEP Proxy for Orion-v2
   orion-v2-proxy:
     image: fiware/pep-proxy #:8.4.0
-    hostname: pep-proxy
+  # hostname: orion-proxy
     container_name: orion-v2-proxy
     depends_on:
      - keyrock
@@ -195,7 +196,7 @@ services:
   # Wilma PEP Proxy for Orion-LD
   orion-ld-proxy:
     image: fiware/pep-proxy #:8.4.0
-    hostname: wilma
+    hostname: orion-proxy
     container_name: orion-ld-proxy
     depends_on:
      - keyrock
@@ -245,14 +246,18 @@ services:
       - "1880"
     ports:
       - "1880:1880" # http://localhost:1880
-    environment:
-      - TZ=Europe/Amsterdam
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    environment:
+      - TZ=Europe/Amsterdam
     volumes:
     # - node-red-data:/data
+      - /root:/root
       - ./node-red/data:/data
       - ./public:/public
+      - .:/home/node-red
+    user: root
+    entrypoint: bash -c "cd /data; npm install --unsafe-perm --no-update-notifier --no-fund --only=production; cd /usr/src/node-red; ./entrypoint.sh"
 
   # NGINX Reverse Proxy and Web Server for NGSI-LD @context files
   nginx:
@@ -270,9 +275,11 @@ services:
     expose:
       - "80"
       - "443"
+      - "3443"
     ports:
-      - "80:80"   # http://localhost
-      - "443:443" # https://localhost
+      - "80:80"     # http://localhost
+      - "443:443"   # https://localhost
+      - "2024:2024" # https://localhost:2024
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d:ro
       - ./certbot/conf:/etc/letsencrypt:ro # Let's Encrypt (Certbot)
@@ -283,8 +290,7 @@ services:
     # command: "/bin/sh -c 'trap exit TERM; while :; do nginx -s reload; sleep 6h & wait $${!}; done & nginx -g \"daemon off;\"'"
     healthcheck:
     # test: curl -k https://localhost/data-models/ngsi-context.jsonld 2>&1 | awk 'NR==1{print $$2}' | grep -q -e '200')
-    # test: curl -k -sf https://localhost/public/data-models/ngsi-context.jsonld || exit 1
-      test: curl -sf http://localhost || exit 1
+      test: curl --insecure --fail --silent https://localhost/public/data-models/ngsi-context.jsonld # || exit 1
 
   # Let's Encrypt with Certbot
   certbot:
@@ -312,7 +318,7 @@ services:
 
   # Blockchain with deployed PoE smart contract
   ganache:
-  # image: trufflesuite/ganache
+  # image: trufflesuite/ganache #:v7.9.2
     image: hybuild/ganache
     hostname: ethereum
     container_name: ganache
